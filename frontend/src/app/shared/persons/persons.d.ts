@@ -17,5 +17,5 @@ export interface PersonsRequestParams {
   gender: string;
   fromDateOfBirth: string;
   toDateOfBirth: string;
-  page: number;
+  pageIndex: number;
 }

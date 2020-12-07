@@ -40,6 +40,6 @@
   </div>
 
   <div *ngIf="personsTotal > 0">
-    <mat-paginator [length]="personsTotal" [pageSize]="pageSize" hidePageSize="true" (page)="paginate($event)"></mat-paginator>
+    <mat-paginator [length]="personsTotal" [pageSize]="pageSize" [pageIndex]="currentPageIndex" hidePageSize="true" (page)="paginate($event)"></mat-paginator>
   </div>
 </mat-card>

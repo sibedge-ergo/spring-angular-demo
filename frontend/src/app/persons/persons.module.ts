@@ -32,9 +32,9 @@ import { PersonsListComponent } from './persons-list/persons-list.component';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatPaginatorModule,
+    MatPaginatorModule
   ],
   declarations: [PersonsComponent, FilterComponent, PersonsListComponent],
-  providers: [MatDatepickerModule, DatePipe],
+  providers: [MatDatepickerModule, DatePipe]
 })
 export class PersonsModule {}

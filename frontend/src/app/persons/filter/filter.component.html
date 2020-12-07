@@ -33,7 +33,7 @@
       <mat-form-field class="input">
         <mat-label>To Date of birth</mat-label>
 
-        <input matInput [matDatepicker]="toDateOfBirth" formControlName="toDateOfBirth">
+        <input matInput [matDatepicker]="toDateOfBirth" [min]="filter.value.fromDateOfBirth" formControlName="toDateOfBirth">
 
         <mat-datepicker-toggle matSuffix [for]="toDateOfBirth"></mat-datepicker-toggle>
         <mat-datepicker #toDateOfBirth></mat-datepicker>
@@ -43,7 +43,7 @@
     <div>
       <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!submitAvailable">Find</button>
 
-      <button mat-raised-button type="reset" *ngIf="submitAvailable" (click)="onReset()">Reset</button>
+      <button mat-raised-button type="reset" (click)="onReset()">Reset</button>
     </div>
   </form>
 </mat-card>

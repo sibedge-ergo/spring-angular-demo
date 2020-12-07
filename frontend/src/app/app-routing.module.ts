@@ -4,17 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./persons/persons.module').then((m) => m.PersonsModule),
-    pathMatch: 'full',
-  },
+    loadChildren: () => import('./persons/persons.module').then(m => m.PersonsModule),
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, {
-      enableTracing: false,
-    }),
+      enableTracing: false
+    })
   ],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

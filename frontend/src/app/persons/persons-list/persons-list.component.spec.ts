@@ -15,7 +15,7 @@ describe('PersonsListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule],
       declarations: [PersonsListComponent],
-      providers: [MatSnackBar, Overlay, DatePipe],
+      providers: [MatSnackBar, Overlay, DatePipe]
     }).compileComponents();
   });
 

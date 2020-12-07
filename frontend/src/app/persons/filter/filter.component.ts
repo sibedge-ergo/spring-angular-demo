@@ -30,6 +30,7 @@ export class FilterComponent {
 
     this.persons
       .fetchPersons({
+        pageIndex: 0,
         firstName,
         lastName,
         gender,
@@ -54,6 +55,6 @@ export class FilterComponent {
   get submitAvailable(): boolean {
     const { firstName, lastName, gender, fromDateOfBirth, toDateOfBirth } = this.filter.value;
 
-    return firstName.length > 0 || lastName.length > 0 || gender.length > 0 || !!fromDateOfBirth || !!toDateOfBirth;
+    return firstName?.length > 0 || lastName?.length > 0 || gender?.length > 0 || !!fromDateOfBirth || !!toDateOfBirth;
   }
 }

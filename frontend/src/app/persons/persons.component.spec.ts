@@ -4,7 +4,7 @@ import { PersonsComponent } from './persons.component';
 describe('PersonsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PersonsComponent],
+      declarations: [PersonsComponent]
     }).compileComponents();
   });
 

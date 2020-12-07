@@ -18,6 +18,7 @@ export class PersonsService {
   persons: Person[] = [];
   totalCount = 0;
   pageSize = 10;
+  currentPageIndex = 0;
 
   constructor(private http: HttpClient, private snackbar: MatSnackBar) {}
 
@@ -37,6 +38,7 @@ export class PersonsService {
     this.loading = true;
 
     let url = this.personsUri;
+    const pageIndex = params?.pageIndex ?? 0;
 
     if (params) {
       this.filter = {
@@ -45,7 +47,7 @@ export class PersonsService {
       };
     } else {
       this.filter = {
-        page: 0,
+        page: pageIndex,
       };
     }
 
@@ -57,13 +59,14 @@ export class PersonsService {
 
         this.persons = content;
         this.totalCount = total;
+        this.currentPageIndex = pageIndex;
 
         this.loading = false;
 
         return response;
       }),
-      catchError((error) => {
-        this.snackbar.open(error.message, 'Close', { panelClass: 'snackbar-container' });
+      catchError(({ error }) => {
+        this.snackbar.open(error.errors.join('. '), 'Close', { panelClass: 'snackbar-container' });
 
         this.loading = false;
 

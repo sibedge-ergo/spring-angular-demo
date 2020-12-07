@@ -6,7 +6,7 @@ import { Person } from '../../shared/persons/persons';
 @Component({
   selector: 'app-persons-list',
   templateUrl: './persons-list.component.html',
-  styleUrls: ['./persons-list.component.css'],
+  styleUrls: ['./persons-list.component.css']
 })
 export class PersonsListComponent implements OnInit {
   columns: string[] = ['personalId', 'firstName', 'lastName', 'gender', 'dateOfBirth'];
@@ -14,11 +14,11 @@ export class PersonsListComponent implements OnInit {
   constructor(private persons: PersonsService) {}
 
   ngOnInit(): void {
-    this.persons.fetchPersons({ page: 0 }).subscribe();
+    this.persons.fetchPersons({ pageIndex: 0 }).subscribe();
   }
 
   paginate({ pageIndex }): void {
-    this.persons.fetchPersons({ page: pageIndex }).subscribe();
+    this.persons.fetchPersons({ pageIndex }).subscribe();
   }
 
   get personsList(): MatTableDataSource<Person> {
@@ -35,5 +35,9 @@ export class PersonsListComponent implements OnInit {
 
   get pageSize(): number {
     return this.persons.pageSize;
+  }
+
+  get currentPageIndex(): number {
+    return this.persons.currentPageIndex;
   }
 }

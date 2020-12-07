@@ -15,7 +15,7 @@ describe('FilterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule],
       declarations: [FilterComponent],
-      providers: [MatSnackBar, Overlay, DatePipe],
+      providers: [MatSnackBar, Overlay, DatePipe]
     }).compileComponents();
   });
 

@@ -13,7 +13,7 @@ describe('PersonsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      providers: [MatSnackBar, Overlay, DatePipe],
+      providers: [MatSnackBar, Overlay, DatePipe]
     });
     service = TestBed.inject(PersonsService);
   });

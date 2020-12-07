@@ -13,6 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent],
   imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [MatSnackBar, Overlay],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
