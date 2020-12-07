@@ -38,22 +38,31 @@ export class PersonsService {
     this.loading = true;
 
     let url = this.personsUri;
-    const pageIndex = params?.pageIndex ?? 0;
+    const { pageIndex, ...rest } = params ?? {};
 
     if (params) {
       this.filter = {
         ...this.filter,
-        ...params,
+        ...rest,
+        page: pageIndex
       };
     } else {
       this.filter = {
-        page: pageIndex,
+        page: pageIndex
       };
     }
 
     url += `?${this.getRequestParams()}&size=${this.pageSize}`;
 
     return this.http.get<PersonsResponse>(url).pipe(
+
+      catchError(({ error }) => {
+        this.snackbar.open(error.errors.join('. '), 'Close', { panelClass: 'snackbar-container' });
+
+        this.loading = false;
+
+        return of(error);
+      }),
       map((response: PersonsResponse) => {
         const { total, content } = response;
 
@@ -64,13 +73,6 @@ export class PersonsService {
         this.loading = false;
 
         return response;
-      }),
-      catchError(({ error }) => {
-        this.snackbar.open(error.errors.join('. '), 'Close', { panelClass: 'snackbar-container' });
-
-        this.loading = false;
-
-        return of(error);
       })
     );
   }

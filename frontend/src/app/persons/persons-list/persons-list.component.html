@@ -1,6 +1,6 @@
 <mat-card class="card">
   <div class="card-content">
-    <div *ngIf="personsTotal === 0 && !personsLoading">
+    <div *ngIf="(!personsTotal || personsTotal === 0) && !personsLoading">
       No persons found
     </div>
 

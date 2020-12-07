@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 import { PersonsService } from '../../shared/persons/persons.service';
@@ -16,6 +16,7 @@ export class FilterComponent {
   ];
 
   filter = new FormGroup({
+    personalId: new FormControl(''),
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     gender: new FormControl(''),
@@ -26,7 +27,7 @@ export class FilterComponent {
   constructor(private persons: PersonsService, private datepipe: DatePipe) {}
 
   onFind(): void {
-    const { firstName, lastName, gender, fromDateOfBirth, toDateOfBirth } = this.filter.value;
+    const { firstName, lastName, gender, fromDateOfBirth, toDateOfBirth, personalId } = this.filter.value;
 
     this.persons
       .fetchPersons({
@@ -34,6 +35,7 @@ export class FilterComponent {
         firstName,
         lastName,
         gender,
+        personalId,
         fromDateOfBirth: this.datepipe.transform(fromDateOfBirth, 'yyyy-MM-dd'),
         toDateOfBirth: this.datepipe.transform(toDateOfBirth, 'yyyy-MM-dd'),
       })
@@ -53,8 +55,15 @@ export class FilterComponent {
   }
 
   get submitAvailable(): boolean {
-    const { firstName, lastName, gender, fromDateOfBirth, toDateOfBirth } = this.filter.value;
+    const { personalId, firstName, lastName, gender, fromDateOfBirth, toDateOfBirth } = this.filter.value;
 
-    return firstName?.length > 0 || lastName?.length > 0 || gender?.length > 0 || !!fromDateOfBirth || !!toDateOfBirth;
+    return (
+      personalId?.length > 0
+      || firstName?.length > 0
+      || lastName?.length > 0
+      || gender?.length > 0
+      || !!fromDateOfBirth
+      || !!toDateOfBirth
+    );
   }
 }

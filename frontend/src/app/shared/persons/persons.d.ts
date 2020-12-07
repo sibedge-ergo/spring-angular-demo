@@ -12,6 +12,7 @@ export interface PersonsResponse {
 }
 
 export interface PersonsRequestParams {
+  personalId: string;
   firstName: string;
   lastName: string;
   gender: string;

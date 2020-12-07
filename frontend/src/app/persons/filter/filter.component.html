@@ -2,6 +2,12 @@
   <form [formGroup]="filter" (ngSubmit)="onFind()">
     <div>
       <mat-form-field class="input">
+        <mat-label>Person ID</mat-label>
+
+        <input matInput formControlName="personalId">
+      </mat-form-field>
+
+      <mat-form-field class="input">
         <mat-label>First name</mat-label>
 
         <input matInput formControlName="firstName">

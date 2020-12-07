@@ -12,5 +12,5 @@ body {
 }
 
 .snackbar-container {
-  word-break: break-all;
+  word-break: break-word;
 }
