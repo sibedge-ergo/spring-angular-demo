@@ -1,0 +1,49 @@
+<mat-card>
+  <form [formGroup]="filter" (ngSubmit)="onFind()">
+    <div>
+      <mat-form-field class="input">
+        <mat-label>First name</mat-label>
+
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Last name</mat-label>
+
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Gender</mat-label>
+
+        <mat-select formControlName="gender">
+          <mat-option *ngFor="let gender of genderList" [value]="gender.code">{{gender.label}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>From Date of birth</mat-label>
+
+        <input matInput [matDatepicker]="fromDateOfBirth" formControlName="fromDateOfBirth">
+
+        <mat-datepicker-toggle matSuffix [for]="fromDateOfBirth"></mat-datepicker-toggle>
+        <mat-datepicker #fromDateOfBirth></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>To Date of birth</mat-label>
+
+        <input matInput [matDatepicker]="toDateOfBirth" formControlName="toDateOfBirth">
+
+        <mat-datepicker-toggle matSuffix [for]="toDateOfBirth"></mat-datepicker-toggle>
+        <mat-datepicker #toDateOfBirth></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!submitAvailable">Find</button>
+
+      <button mat-raised-button type="reset" *ngIf="submitAvailable" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+</mat-card>

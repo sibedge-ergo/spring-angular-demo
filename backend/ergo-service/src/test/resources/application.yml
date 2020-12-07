@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    # use testcontainers suppport (see https://www.testcontainers.org/modules/databases/jdbc/)
+    url: "jdbc:tc:postgresql:10.15:///ergo?TC_DAEMON=true"

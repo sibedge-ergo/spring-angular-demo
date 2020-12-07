@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  backend:
+    build: backend
+    container_name: backend
+    environment:
+      STORE_URL: jdbc:postgresql://store:5432/ergo
+      STORE_USER: ergo
+      STORE_PASSWORD: 9gA4iG
+    command: --spring.profiles.active=demo
+    labels:
+      com.sibedge.stage: "local"
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    networks: 
+      - ergo-net
+
+  store:
+    image: postgres:13.1-alpine
+    container_name: db
+    environment:
+      POSTGRES_USER: ergo
+      POSTGRES_DB: ergo
+      POSTGRES_PASSWORD: 9gA4iG
+    labels:
+      com.sibedge.stage: "local"
+    ports:
+      - target: 5432
+        published: 5432
+        protocol: tcp
+        mode: host
+    networks: 
+      - ergo-net
+    volumes:
+      - type: volume
+        source: store-data
+        target: /var/lib/postgresql/data
+  
+  frontend:
+    build: frontend
+    container_name: frontend
+    labels:
+      com.sibedge.stage: "local"
+    ports:
+      - target: 80
+        published: 4200
+        protocol: tcp
+        mode: host
+    networks: 
+      - ergo-net
+
+networks:
+  ergo-net: {}
+
+volumes:
+  store-data: {}

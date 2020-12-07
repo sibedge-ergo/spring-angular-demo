@@ -1,0 +1,45 @@
+<mat-card class="card">
+  <div class="card-content">
+    <div *ngIf="personsTotal === 0 && !personsLoading">
+      No persons found
+    </div>
+
+    <div *ngIf="personsLoading" class="loader">
+      <mat-spinner diameter="32"></mat-spinner>
+    </div>
+
+    <table *ngIf="personsTotal > 0" mat-table width="100%" [dataSource]="personsList">
+      <ng-container matColumnDef="personalId">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.personalId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOfBirth">
+        <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="personsTotal > 0">
+    <mat-paginator [length]="personsTotal" [pageSize]="pageSize" hidePageSize="true" (page)="paginate($event)"></mat-paginator>
+  </div>
+</mat-card>

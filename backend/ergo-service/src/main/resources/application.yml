@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: ${STORE_URL}
+    username: ${STORE_USER}
+    password: ${STORE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  messages:
+    basename: messages/validation
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      enabled: true
